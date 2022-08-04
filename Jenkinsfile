@@ -1,4 +1,4 @@
-node {
+pipeline {
     environment {
       registry = "jfroginterviewtest.jfrog.io"
       registryCredential = 'sebastiancanevari@gmail.com'
