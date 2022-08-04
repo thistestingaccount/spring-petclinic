@@ -1,5 +1,9 @@
 pipeline {
-    agent { docker { image 'maven:3.8.4-openjdk-11-slim' } }
+    agent any
+    tools {
+      maven 'Maven 3.8.6'
+      jdk 'jdk11'
+    } 
     stages {
       stage('Cloning Git') {
         steps {
@@ -13,3 +17,4 @@ pipeline {
       }
     }
 }
+
