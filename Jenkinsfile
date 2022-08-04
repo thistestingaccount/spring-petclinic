@@ -1,7 +1,12 @@
 pipeline {
+    environment {
+      registry = "jfroginterviewtest.jfrog.io"
+      registryCredential = 'sebastiancanevari@gmail.com'
+      dockerImage = ''
+    }
     agent { 
       docker { 
-        image 'maven:3.8.6-openjdk-11-slim' 
+        image 'maven:3.8.4-openjdk-11-slim' 
       } 
     }
     stages {
@@ -17,6 +22,13 @@ pipeline {
           ls
           pwd
           ''' 
+        }
+      }
+      stage('Building Image') {
+        steps{
+          script {
+            dockerImage = docker.build registry + ":latest"
+          }
         }
       }
     }
