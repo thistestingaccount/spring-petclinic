@@ -1,7 +1,7 @@
 pipeline {
     environment {
       registry = "jfroginterviewtest.jfrog.io"
-      registryCredential = 'sebastiancanevari@gmail.com'
+      registryCredential = '8b448488-b394-4508-bbec-e725ee6eed66'
       dockerImage = ''
     }
     agent any 
