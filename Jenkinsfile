@@ -21,10 +21,13 @@ node {
       }
     }
 
-    stage('build image') {
-        docker.withRegistry(registry, registryCredential) {
-            def myImage = docker.build('jenkins-docker-kubernetes/petclinic')
-            myImage.push('latest')
-        }    
+    stage('Building Image') {
+      steps{
+        script{
+          dockerImage = registry + ":latest"
+        }
+        sh('docker build -t ${dockerImage} .')
+        echo('done')
+      }
     }
 }
