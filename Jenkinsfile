@@ -2,7 +2,7 @@ pipeline {
     environment {
       registry = "interview-jfrog-test"
       registryCredential = '8b448488-b394-4508-bbec-e725ee6eed66'
-      registryUri = 'https://jfroginterviewtest.jfrog.io'
+      registryUri = 'https://jfroginterviewtest.jfrog.io/artifactory'
       dockerImage = ''
     }
     agent any 
