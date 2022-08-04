@@ -4,7 +4,7 @@ pipeline {
       registryCredential = 'sebastiancanevari@gmail.com'
       dockerImage = ''
     }
-    agent none 
+    agent any 
     stages {
       stage('Compile') {
       agent {
