@@ -18,9 +18,7 @@ pipeline {
       stage('Test') {
         steps {
           sh '''
-          mvn clean install
-          ls
-          pwd
+          mvn test
           ''' 
         }
       }
