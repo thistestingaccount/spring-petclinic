@@ -2,7 +2,8 @@ pipeline {
     environment {
       registry = "interview-jfrog-test/"
       registryCredential = '8b448488-b394-4508-bbec-e725ee6eed66'
-      registryUri = 'jfroginterviewtest.jfrog.io/'
+      registryUri = 'https://jfroginterviewtest.jfrog.io/'
+      registryBase "jfroginterviewtest.jfrog.io/""
       dockerImage = ''
     }
     agent any 
@@ -21,7 +22,7 @@ pipeline {
       stage('Building Image') {
         steps{
           script {
-            dockerImage = docker.build registryUri + registry + "petclinic:latest"
+            dockerImage = docker.build registryBase + registry + "petclinic:latest"
           }
         }
       }
