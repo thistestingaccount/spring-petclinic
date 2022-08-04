@@ -4,26 +4,33 @@ pipeline {
       registryCredential = 'sebastiancanevari@gmail.com'
       dockerImage = ''
     }
-    agent any 
+    agent { 
+      docker { 
+        image 'maven:3.8.4-openjdk-11-slim' 
+      } 
+    }
     stages {
       stage('Compile') {
-      agent {
-        docker { 
-          image 'maven:3.8.4-openjdk-11-slim'
-        } 
+         steps {
+           sh 'mvn compile -Dcheckstyle.skip'
+         }
       }
-       steps {
-         sh 'mvn compile -Dcheckstyle.skip'
-         sh 'mvn test'
-       }
+      stage('Test') {
+        steps {
+          sh '''
+          mvn test
+          ''' 
+        }
       }
+
+    }
+    agent any
+    stages {
       stage('Building Image') {
         steps{
-          script{
-            dockerImage = registry + ":latest"
+          script {
+            dockerImage = docker.build registry + ":latest"
           }
-          sh('docker build -t ${dockerImage} .')
-          echo('done')
         }
       }
     }
